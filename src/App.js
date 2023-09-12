@@ -11,10 +11,13 @@ function App() {
         <div className="App">
             <BrowserRouter>
                 <NavBar logout={() => {console.log("Running the logout function")}}/>
-                <Routes
-                    login={() => {console.log("Running the login function")}}
-                    signup={() => {console.log("Running the signup function")}}
-                />
+
+                <main>
+                    <Routes
+                        login={() => {console.log("Running the login function")}}
+                        signup={() => {console.log("Running the signup function")}}
+                    />
+                </main>
             </BrowserRouter>
         </div>
     );
