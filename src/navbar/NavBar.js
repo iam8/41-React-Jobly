@@ -2,6 +2,8 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Navbar, Nav, NavItem } from "reactstrap";
 
+import "./NavBar.css";
+
 
 /**
  * Render a navigation bar for the site.
