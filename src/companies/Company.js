@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { useParams, Redirect } from "react-router-dom";
 
 import JoblyApi from "../api";
+import JobCard from "../jobs/JobCard";
 
 
 function Company() {
@@ -32,6 +33,16 @@ function Company() {
             <h2>{companyData.name}</h2>
             <div>
                 {companyData.description}
+            </div>
+            <div>
+                {companyData.jobs.map((job) => {
+                    return <JobCard
+                        key={job.id}
+                        title={job.title}
+                        salary={job.salary}
+                        equity={job.equity}
+                    />
+                })}
             </div>
         </div>
     )
