@@ -30,9 +30,9 @@ function Company() {
     return (
         <div>
             <h2>{companyData.name}</h2>
-            <p>
+            <div>
                 {companyData.description}
-            </p>
+            </div>
         </div>
     )
 }
