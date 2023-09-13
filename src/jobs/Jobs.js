@@ -3,7 +3,6 @@ import React, {useState, useEffect} from "react";
 import JoblyApi from "../api";
 import SearchBar from "../shared/SearchBar";
 import JobCardList from "./JobCardList";
-import JobCard from "./JobCard";
 
 
 function Jobs() {
