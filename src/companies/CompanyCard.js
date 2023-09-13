@@ -1,12 +1,21 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 
-function CompanyCard() {
+function CompanyCard({name, desc, logoUrl, handle}) {
 
     return (
-        <div>
-            COMPANY CARD
-        </div>
+        <Link to={`/companies/${handle}`}>
+            <h3>{name}</h3>
+            {logoUrl &&
+                <img
+                    src={logoUrl}
+                    alt={name}
+                />
+            }
+
+            <div>{desc}</div>
+        </Link>
     )
 }
 
