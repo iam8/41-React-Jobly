@@ -27,6 +27,8 @@ function Jobs() {
 
     if (!jobList) return <div>LOADING...</div>
 
+    // TODO: replace map code below with JobCardList render
+
     return (
         <div>
             <SearchBar searchFor={searchFor}/>
