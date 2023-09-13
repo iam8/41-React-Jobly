@@ -25,8 +25,10 @@ function JobCard({id, title, salary, equity, companyName}) {
                 <div>Salary: {salary}</div>
             }
 
-            {equity !== undefined &&
-                <div>Equity: {equity}</div>
+            {equity !== null &&
+                <div>
+                    Equity: {equity}
+                </div>
             }
 
             <button onClick={handleApply}>Apply</button>
