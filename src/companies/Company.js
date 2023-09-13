@@ -23,13 +23,7 @@ function Company() {
 
     }, [handle]);
 
-    if (!companyData) {
-        return (
-            <div>
-                LOADING...
-            </div>
-        )
-    }
+    if (!companyData) return <div>LOADING...</div>
 
     return (
         <div>
