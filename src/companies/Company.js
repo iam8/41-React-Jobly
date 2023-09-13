@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 
 import JoblyApi from "../api";
 
@@ -15,7 +15,8 @@ function Company() {
             try {
                 setCompanyData(await JoblyApi.getCompany(handle));
             } catch(err) {
-                console.log(err);
+                console.log("API ERROR:", err);
+                setCompanyData({});
             }
         }
 
@@ -24,6 +25,7 @@ function Company() {
     }, [handle]);
 
     if (!companyData) return <div>LOADING...</div>
+    if (!Object.keys(companyData).length) return <Redirect to="/" />
 
     return (
         <div>
