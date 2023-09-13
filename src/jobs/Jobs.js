@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 
 import JoblyApi from "../api";
 import SearchBar from "../shared/SearchBar";
+import JobCardList from "./JobCardList";
 import JobCard from "./JobCard";
 
 
@@ -27,27 +28,16 @@ function Jobs() {
 
     if (!jobList) return <div>LOADING...</div>
 
-    // TODO: replace map code below with JobCardList render
-
     return (
         <div>
             <SearchBar searchFor={searchFor}/>
 
             {jobList.length ? (
-                <div>
-                    {jobList.map((job) => {
-                        return <JobCard
-                            key={job.id}
-                            title={job.title}
-                            salary={job.salary}
-                            equity={job.equity}
-                            companyName={job.companyName}
-                        />
-                    })}
-                </div>
+                <JobCardList jobList={jobList}/>
             ) : (
                 <p>No results found!</p>
             )}
+
         </div>
     )
 }
