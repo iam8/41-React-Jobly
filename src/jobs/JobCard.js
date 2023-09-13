@@ -31,7 +31,12 @@ function JobCard({id, title, salary, equity, companyName}) {
                 </div>
             }
 
-            <button onClick={handleApply}>Apply</button>
+            <button
+                onClick={handleApply}
+                disabled={hasApplied}
+            >
+                    {hasApplied ? <span>Applied</span> : <span>Apply</span>}
+            </button>
         </div>
     )
 }
