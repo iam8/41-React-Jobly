@@ -16,8 +16,14 @@ function JobCard({id, title, salary, equity, companyName}) {
     return (
         <div>
             <h5>{title}</h5>
-            <div>Company: {companyName}</div>
-            <div>Salary: {salary}</div>
+
+            {companyName !== undefined &&
+                <div>Company: {companyName}</div>
+            }
+
+            {salary &&
+                <div>Salary: {salary}</div>
+            }
 
             {equity !== undefined &&
                 <div>Equity: {equity}</div>
