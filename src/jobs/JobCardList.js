@@ -11,6 +11,7 @@ function JobCardList({jobList}) {
             {jobList.map((job) => {
                 return <JobCard
                     key={job.id}
+                    id={job.id}
                     title={job.title}
                     salary={job.salary}
                     equity={job.equity}
