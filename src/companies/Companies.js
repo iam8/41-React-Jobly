@@ -38,7 +38,7 @@ function Companies() {
                             key={company.handle}
                             name={company.name}
                             desc={company.description}
-                            logoUrl={company.logo_url}
+                            logoUrl={company.logoUrl}
                             handle={company.handle}
                         />
                     })}
