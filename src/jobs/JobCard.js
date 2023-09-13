@@ -1,11 +1,29 @@
-import React from "react";
+import React, {useContext, useState} from "react";
+import UserContext from "../auth/UserContext";
 
 
-function JobCard() {
+function JobCard({id, title, salary, equity, companyName}) {
+    const {hasAppliedToJob, applyToJob} = useContext(UserContext);
+    const [hasApplied, setHasApplied] = useState(false);
+
+    const handleApply = () => {
+        if (hasAppliedToJob(id)) return;
+
+        applyToJob(id);
+        setHasApplied(true);
+    }
 
     return (
         <div>
-            JOB CARD
+            <h5>{title}</h5>
+            <div>Company: {companyName}</div>
+            <div>Salary: {salary}</div>
+
+            {equity !== undefined &&
+                <div>Equity: {equity}</div>
+            }
+
+            <button onClick={handleApply}>Apply</button>
         </div>
     )
 }
