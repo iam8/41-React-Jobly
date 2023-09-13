@@ -10,12 +10,24 @@ import './App.css';
 function App() {
     const [currentUser, setCurrentUser] = useState(null);
 
-    function hasAppliedToJob(id) {
+    async function signup(userData) {
+        console.log("USER SIGNUP DATA RECEIVED:", userData);
+    }
 
+    async function login(userData) {
+        console.log("USER LOGIN DATA RECEIVED:", userData);
+    }
+
+    async function logout() {
+        console.log("LOGGING OUT");
+    }
+
+    function hasAppliedToJob(id) {
+        return false;
     }
 
     function applyToJob(id) {
-
+        console.log("APPLYING FOR JOB WITH ID:", id);
     }
 
     return (
@@ -24,11 +36,11 @@ function App() {
                 <UserContext.Provider
                     value={{currentUser, setCurrentUser, hasAppliedToJob, applyToJob}}
                 >
-                    <NavBar logout={() => {console.log("Running the logout function")}}/>
+                    <NavBar logout={logout}/>
 
                     <Routes
-                        login={() => {console.log("Running the login function")}}
-                        signup={() => {console.log("Running the signup function")}}
+                        login={login}
+                        signup={signup}
                     />
 
                 </UserContext.Provider>
