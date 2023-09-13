@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import { useParams, Redirect } from "react-router-dom";
 
 import JoblyApi from "../api";
-import JobCard from "../jobs/JobCard";
+import JobCardList from "../jobs/JobCardList";
 
 
 function Company() {
@@ -11,7 +11,6 @@ function Company() {
 
     // Fetch company data from API
     useEffect(() => {
-
         const getCompanyData = async () => {
             try {
                 setCompanyData(await JoblyApi.getCompany(handle));
@@ -22,7 +21,6 @@ function Company() {
         }
 
         getCompanyData();
-
     }, [handle]);
 
     if (!companyData) return <div>LOADING...</div>
@@ -31,19 +29,8 @@ function Company() {
     return (
         <div>
             <h2>{companyData.name}</h2>
-            <div>
-                {companyData.description}
-            </div>
-            <div>
-                {companyData.jobs.map((job) => {
-                    return <JobCard
-                        key={job.id}
-                        title={job.title}
-                        salary={job.salary}
-                        equity={job.equity}
-                    />
-                })}
-            </div>
+            <div>{companyData.description}</div>
+            <JobCardList jobList={companyData.jobs}/>
         </div>
     )
 }
