@@ -1,15 +1,19 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import UserContext from "../auth/UserContext";
 
 
 function JobCard({id, title, salary, equity, companyName}) {
     const {hasAppliedToJob, applyToJob} = useContext(UserContext);
-    const [hasApplied, setHasApplied] = useState(false);
+    const [hasApplied, setHasApplied] = useState();
 
-    const handleApply = () => {
+    useEffect(() => {
+        setHasApplied(hasAppliedToJob(id));
+    }, [id, hasAppliedToJob]);
+
+    const handleApply = async () => {
         if (hasAppliedToJob(id)) return;
 
-        applyToJob(id);
+        await applyToJob(id);
         setHasApplied(true);
     }
 
