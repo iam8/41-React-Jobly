@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useHistory } from "react-router-dom";
 
 
 function SignupForm({signup}) {
@@ -11,6 +12,7 @@ function SignupForm({signup}) {
     };
 
     const [formData, setFormData] = useState(INIT_FORM);
+    const history = useHistory();
 
     const handleChange = (evt) => {
         const {name, value} = evt.target;
@@ -23,7 +25,7 @@ function SignupForm({signup}) {
     const handleSubmit = async (evt) => {
         evt.preventDefault();
         await signup(formData);
-        setFormData(INIT_FORM);
+        history.push("/");
     }
 
     return (

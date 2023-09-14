@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useHistory } from "react-router-dom";
 
 
 function LoginForm({login}) {
@@ -8,6 +9,7 @@ function LoginForm({login}) {
     };
 
     const [formData, setFormData] = useState(INIT_FORM);
+    const history = useHistory();
 
     const handleChange = (evt) => {
         const {name, value} = evt.target;
@@ -20,7 +22,7 @@ function LoginForm({login}) {
     const handleSubmit = async (evt) => {
         evt.preventDefault();
         await login(formData);
-        setFormData(INIT_FORM);
+        history.push("/"); // Redirect to homepage
     }
 
     return (
