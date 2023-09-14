@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {BrowserRouter} from "react-router-dom";
+import jwtDecode from 'jwt-decode';
 
 import JoblyApi from './api';
 import NavBar from './navbar/NavBar';
@@ -16,10 +17,32 @@ function App() {
     const [token, setToken] = useState(null);
 
     useEffect(() => {
+        console.log("RUNNING USEEFFECT");
+        console.log("CURRENT USER:", currentUser);
+        console.log("RECEIVED TOKEN:", token);
+        console.log("APPLIED JOB IDS:", appliedJobsIds);
+
         // Get user data from API
+        async function fetchCurrentUser() {
+            if (token) {
+                try {
+                    const {username} = jwtDecode(token);
+                    JoblyApi.token = token;
+                    const user = await JoblyApi.getCurrentUser(username);
+                    setCurrentUser(user);
+                    setAppliedJobsIds(new Set(user.applications));
+                } catch(err) {
+                    console.log("ERROR FETCHING CURRENT USER:", err);
+                    setCurrentUser(null);
+                }
+            }
 
+            setIsUserLoaded(true);
+        }
 
-        setIsUserLoaded(true);
+        setIsUserLoaded(false);
+        fetchCurrentUser();
+
     }, [token]);
 
 
@@ -57,11 +80,16 @@ function App() {
         return appliedJobsIds.has(id);
     }
 
-    function applyToJob(id) {
+    async function applyToJob(id) {
         if (hasAppliedToJob(id)) return;
 
         console.log("APPLYING FOR JOB WITH ID:", id);
-        setAppliedJobsIds(new Set([...appliedJobsIds, id]));
+        try {
+            await JoblyApi.applyToJob(currentUser.username, id);
+            setAppliedJobsIds(new Set([...appliedJobsIds, id]));
+        } catch(err) {
+            console.log("ERROR APPLYING TO JOB:", err);
+        }
     }
 
     if (!isUserLoaded) return <div>LOADING...</div>
