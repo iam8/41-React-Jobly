@@ -50,7 +50,7 @@ function NavBar({logout}) {
 
                 <Nav className="ml-auto" navbar>
                     <NavItem>
-                        <NavLink to="/profile">Profile</NavLink>
+                        <NavLink to="/profile">Profile ({currentUser.username})</NavLink>
                     </NavItem>
                 </Nav>
 
