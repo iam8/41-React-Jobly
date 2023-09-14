@@ -6,15 +6,18 @@ import JoblyApi from './api';
 import NavBar from './navbar/NavBar';
 import Routes from './routes/Routes';
 import UserContext from './auth/UserContext';
+import useLocalStorage from './hooks/useLocalStorage';
 import './App.css';
 
+// Key name for storing token in localStorage
+export const TOKEN_STORAGE_KEY = "jobly-token";
 
 
 function App() {
     const [isUserLoaded, setIsUserLoaded] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
     const [appliedJobsIds, setAppliedJobsIds] = useState(new Set());
-    const [token, setToken] = useState(null);
+    const [token, setToken] = useLocalStorage(TOKEN_STORAGE_KEY);
 
     useEffect(() => {
         console.log("RUNNING USEEFFECT");
