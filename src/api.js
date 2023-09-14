@@ -36,6 +36,20 @@ class JoblyApi {
 
   // Individual API routes
 
+  /** Register a new user. */
+  static async signup(user) {
+    let res = await this.request("auth/register", {user}, "post");
+    console.log("TOKEN RECEIVED FROM SIGNUP:", res.token);
+    return res.token;
+  }
+
+  /** Log in a user. */
+  static async login(user) {
+    let res = await this.request("auth/token", {user}, "post");
+    console.log("TOKEN RECEIVED FROM LOGIN:", res.token);
+    return res.token;
+  }
+
   /** Get list of all companies. */
   static async getCompanies(name) {
     let res = await this.request("companies/", {name});
@@ -53,6 +67,8 @@ class JoblyApi {
     let res = await this.request("jobs/", {title});
     return res.jobs;
   }
+
+
 }
 
 // for now, put token ("testuser" / "password" on class)
