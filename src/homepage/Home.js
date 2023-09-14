@@ -11,7 +11,10 @@ function Home() {
         return (
             <>
                 <div>
-                    Sign in or log in
+                    <Link to="/signup">Sign up</Link>
+                </div>
+                <div>
+                    <Link to="/login">Log in</Link>
                 </div>
             </>
         )
