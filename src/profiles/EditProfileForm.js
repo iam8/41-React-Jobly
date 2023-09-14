@@ -1,10 +1,11 @@
 import React, {useState, useContext} from "react";
 
+import JoblyApi from "../api";
 import UserContext from "../auth/UserContext";
 
 
-function EditProfileForm({saveProfile}) {
-    const {currentUser} = useContext(UserContext);
+function EditProfileForm() {
+    const {currentUser, setCurrentUser} = useContext(UserContext);
 
     const INIT_FORM = {
         firstName: currentUser.firstName,
@@ -13,6 +14,17 @@ function EditProfileForm({saveProfile}) {
     };
 
     const [formData, setFormData] = useState(INIT_FORM);
+
+    async function saveUserProfile(userData) {
+        console.log("USER DATA RECEIVED:", userData);
+
+        try {
+            const savedData = await JoblyApi.saveUserProfile();
+            return savedData;
+        } catch(err) {
+            console.log("ERROR SAVING PROFILE:", err);
+        }
+    }
 
     const handleChange = (evt) => {
         const {name, value} = evt.target;
@@ -25,7 +37,8 @@ function EditProfileForm({saveProfile}) {
     const handleSubmit = async (evt) => {
         console.log("SAVING PROFILE CHANGES...");
         evt.preventDefault();
-        // await saveProfile(formData);
+        const savedUserData = await saveUserProfile(formData);
+        setCurrentUser(savedUserData);
     }
 
 
