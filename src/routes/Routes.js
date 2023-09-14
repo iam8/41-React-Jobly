@@ -8,6 +8,7 @@ import Companies from "../companies/Companies";
 import Company from "../companies/Company";
 import Jobs from "../jobs/Jobs";
 import EditProfileForm from "../profiles/EditProfileForm";
+import ProtectedRoute from "./ProtectedRoute";
 
 
 /**
@@ -22,15 +23,21 @@ function Routes({login, signup}) {
     return (
         <Switch>
             <Route exact path="/companies/:handle">
-                <Company />
+                <ProtectedRoute>
+                    <Company />
+                </ProtectedRoute>
             </Route>
 
             <Route exact path="/companies">
-                <Companies />
+                <ProtectedRoute>
+                    <Companies />
+                </ProtectedRoute>
             </Route>
 
             <Route exact path="/jobs">
-                <Jobs />
+                <ProtectedRoute>
+                    <Jobs />
+                </ProtectedRoute>
             </Route>
 
             <Route exact path="/login">
@@ -42,7 +49,9 @@ function Routes({login, signup}) {
             </Route>
 
             <Route exact path="/profile">
-                <EditProfileForm />
+                <ProtectedRoute>
+                    <EditProfileForm />
+                </ProtectedRoute>
             </Route>
 
             <Route exact path="/">
