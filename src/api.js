@@ -41,21 +41,18 @@ class JoblyApi {
     let res = await this.request("auth/register",
                                  {username, password, firstName, lastName, email},
                                  "post");
-    console.log("TOKEN RECEIVED FROM SIGNUP:", res.token);
     return res.token;
   }
 
   /** Log in a user. */
   static async login({username, password}) {
     let res = await this.request("auth/token", {username, password}, "post");
-    console.log("TOKEN RECEIVED FROM LOGIN:", res.token);
     return res.token;
   }
 
   /** Get a user by username. */
   static async getCurrentUser(username) {
     let res = await this.request(`users/${username}`);
-    console.log("USER DATA RECEIVED:", res.user);
     return res.user;
   }
 
@@ -80,7 +77,6 @@ class JoblyApi {
   /** Apply to a job. */
     static async applyToJob(username, jobId) {
         let res = await this.request(`users/${username}/jobs/${jobId}`, {}, "post");
-        console.log("APPLIED:", res.applied);
         return res.applied;
     }
 

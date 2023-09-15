@@ -26,8 +26,6 @@ function EditProfileForm() {
     }
 
     async function saveUserProfile(username, formData) {
-        console.log("USER DATA RECEIVED:", username, formData);
-
         try {
             const savedData = await JoblyApi.saveUserProfile({username, ...formData});
             return savedData;

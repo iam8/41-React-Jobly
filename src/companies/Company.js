@@ -15,7 +15,7 @@ function Company() {
             try {
                 setCompanyData(await JoblyApi.getCompany(handle));
             } catch(err) {
-                console.log("API ERROR:", err);
+                console.log("ERROR FETCHING COMPANY DATA:", err);
                 setCompanyData({});
             }
         }

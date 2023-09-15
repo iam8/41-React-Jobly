@@ -21,7 +21,7 @@ function Companies() {
             const results = await JoblyApi.getCompanies(name);
             setCompanyList(results);
         } catch(err) {
-            console.log(err);
+            console.log("ERROR RETRIEVING COMPANY/IES:", err);
         }
     }
 

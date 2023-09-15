@@ -20,10 +20,6 @@ function App() {
     const [token, setToken] = useLocalStorage(TOKEN_STORAGE_KEY);
 
     useEffect(() => {
-        console.log("RUNNING USEEFFECT");
-        console.log("CURRENT USER:", currentUser);
-        console.log("RECEIVED TOKEN:", token);
-        console.log("APPLIED JOB IDS:", appliedJobsIds);
 
         // Get user data from API
         async function fetchCurrentUser() {
@@ -50,7 +46,6 @@ function App() {
 
 
     async function signup(userData) {
-        console.log("USER SIGNUP DATA RECEIVED:", userData);
         try {
             const token = await JoblyApi.signup(userData);
             setToken(token);
@@ -62,7 +57,6 @@ function App() {
     }
 
     async function login(userData) {
-        console.log("USER LOGIN DATA RECEIVED:", userData);
         try {
             const token = await JoblyApi.login(userData);
             setToken(token);
@@ -74,7 +68,6 @@ function App() {
     }
 
     async function logout() {
-        console.log("LOGGING OUT");
         setCurrentUser(null);
         setToken(null);
     }
@@ -86,7 +79,6 @@ function App() {
     async function applyToJob(id) {
         if (hasAppliedToJob(id)) return;
 
-        console.log("APPLYING FOR JOB WITH ID:", id);
         try {
             await JoblyApi.applyToJob(currentUser.username, id);
             setAppliedJobsIds(new Set([...appliedJobsIds, id]));

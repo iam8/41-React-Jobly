@@ -21,7 +21,7 @@ function Jobs() {
             const results = await JoblyApi.getJobs(title);
             setJobList(results);
         } catch(err) {
-            console.log(err);
+            console.log("ERROR RETRIEVING JOB(S):", err);
         }
     }
 
