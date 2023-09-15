@@ -23,7 +23,7 @@ function Home() {
     function loggedInHome() {
         return (
             <>
-                <h2>Welcome, {currentUser.username}</h2>
+                <h2>Welcome, {currentUser.firstName}</h2>
             </>
         )
     }
