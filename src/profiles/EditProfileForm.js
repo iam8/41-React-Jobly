@@ -6,25 +6,16 @@ import UserContext from "../auth/UserContext";
 
 function EditProfileForm() {
     const {currentUser, setCurrentUser} = useContext(UserContext);
+    const [saveSuccess, setSaveSuccess] = useState(null);
 
     const INIT_FORM = {
         firstName: currentUser.firstName,
         lastName: currentUser.lastName,
-        email: currentUser.email
+        email: currentUser.email,
+        password: ""
     };
 
     const [formData, setFormData] = useState(INIT_FORM);
-
-    async function saveUserProfile(userData) {
-        console.log("USER DATA RECEIVED:", userData);
-
-        try {
-            const savedData = await JoblyApi.saveUserProfile();
-            return savedData;
-        } catch(err) {
-            console.log("ERROR SAVING PROFILE:", err);
-        }
-    }
 
     const handleChange = (evt) => {
         const {name, value} = evt.target;
@@ -32,18 +23,49 @@ function EditProfileForm() {
             ...formData,
             [name]: value
         }));
+
+    }
+
+    async function saveUserProfile(username, formData) {
+        console.log("USER DATA RECEIVED:", username, formData);
+
+        try {
+            const savedData = await JoblyApi.saveUserProfile({username, ...formData});
+            return savedData;
+        } catch(err) {
+            console.log("ERROR SAVING PROFILE:", err);
+            return;
+        }
     }
 
     const handleSubmit = async (evt) => {
-        console.log("SAVING PROFILE CHANGES...");
         evt.preventDefault();
-        const savedUserData = await saveUserProfile(formData);
+        const savedUserData = await saveUserProfile(currentUser.username, formData);
+        if (!savedUserData) {
+            setSaveSuccess(false);
+            return;
+        }
+
+        setSaveSuccess(true);
         setCurrentUser(savedUserData);
+        setFormData(data => ({
+            ...data,
+            password: ""
+        }));
     }
 
+    const renderAlert = () => {
+        if (saveSuccess) {
+            return <h6>Save successful!</h6>
+        } else if (saveSuccess === false) {
+            return <h6>ERROR: could not save!</h6>
+        }
+    }
 
     return (
         <div>
+            {renderAlert()}
+
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="username">Username:</label>
@@ -85,6 +107,17 @@ function EditProfileForm() {
                         name="email"
                         type="email"
                         value={formData.email}
+                        onChange={handleChange}
+                    />
+                </div>
+
+                <div>
+                    <label htmlFor="password">Password:</label>
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        value={formData.password}
                         onChange={handleChange}
                     />
                 </div>
