@@ -11,8 +11,7 @@ function EditProfileForm() {
     const INIT_FORM = {
         firstName: currentUser.firstName,
         lastName: currentUser.lastName,
-        email: currentUser.email,
-        password: ""
+        email: currentUser.email
     };
 
     const [formData, setFormData] = useState(INIT_FORM);
@@ -107,17 +106,6 @@ function EditProfileForm() {
                         name="email"
                         type="email"
                         value={formData.email}
-                        onChange={handleChange}
-                    />
-                </div>
-
-                <div>
-                    <label htmlFor="password">Password:</label>
-                    <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        value={formData.password}
                         onChange={handleChange}
                     />
                 </div>
