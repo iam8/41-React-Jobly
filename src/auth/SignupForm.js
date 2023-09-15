@@ -2,6 +2,13 @@ import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 
 
+/**
+ * /signup - Form used to register a new user on the Jobly website.
+ *
+ * Manages state updates on changes to the form inputs.
+ *
+ * On successful sign up, calls signup (function prop) and redirects to / (home).
+ */
 function SignupForm({signup}) {
     const INIT_FORM = {
         username: "",
@@ -14,6 +21,7 @@ function SignupForm({signup}) {
     const [formData, setFormData] = useState(INIT_FORM);
     const history = useHistory();
 
+    /** Handle changes to inputs. */
     const handleChange = (evt) => {
         const {name, value} = evt.target;
         setFormData((formData) => ({
@@ -22,10 +30,14 @@ function SignupForm({signup}) {
         }));
     }
 
+    /** Form submission - register user and redirect to homepage on success. */
     const handleSubmit = async (evt) => {
         evt.preventDefault();
-        await signup(formData);
-        history.push("/");
+        const result = await signup(formData);
+
+        if (result.success) {
+            history.push("/"); // Redirect to homepage
+        }
     }
 
     return (
