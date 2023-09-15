@@ -13,6 +13,17 @@ import './App.css';
 export const TOKEN_STORAGE_KEY = "jobly-token";
 
 
+/**
+ * Jobly application.
+ *
+ * State:
+ *  - isUserLoaded (bool): true if user data has been fetched via API, false otherwise
+ *  - currentUser (object): data on current user; null if no current user exists
+ *  - appliedJobsIds (set): IDs of jobs the user has pplied to
+ *  - token (string): authentication token for current user; initially read from local storage
+ *
+ * Renders Routes component.
+ */
 function App() {
     const [isUserLoaded, setIsUserLoaded] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
@@ -21,7 +32,7 @@ function App() {
 
     useEffect(() => {
 
-        // Get user data from API
+        /** Fetch user data from API. */
         async function fetchCurrentUser() {
             if (token) {
                 try {
@@ -45,6 +56,11 @@ function App() {
     }, [token]);
 
 
+    /**
+     * Register new user with given user data: {username, password, firstName, lastName, email}.
+     *
+     * Return {success: true} and log user in on success and {success: false, err} on error.
+     */
     async function signup(userData) {
         try {
             const token = await JoblyApi.signup(userData);
@@ -56,6 +72,11 @@ function App() {
         }
     }
 
+    /**
+     * Log in user with given user data: {username, password}.
+     *
+     * Return {success: true} on success and {success: false, err} on error.
+     */
     async function login(userData) {
         try {
             const token = await JoblyApi.login(userData);
@@ -67,15 +88,18 @@ function App() {
         }
     }
 
+    /** Log current user out. */
     async function logout() {
         setCurrentUser(null);
         setToken(null);
     }
 
+    /** Check if the current user has applied to the job with the given ID. */
     function hasAppliedToJob(id) {
         return appliedJobsIds.has(id);
     }
 
+    /** Apply to a job and add job ID to set of applied job IDs on success. */
     async function applyToJob(id) {
         if (hasAppliedToJob(id)) return;
 
@@ -93,10 +117,9 @@ function App() {
         <div className="App">
             <BrowserRouter>
                 <UserContext.Provider
-                    value={{currentUser, setCurrentUser, hasAppliedToJob, applyToJob}}
-                >
-                    <NavBar logout={logout}/>
+                    value={{currentUser, setCurrentUser, hasAppliedToJob, applyToJob}}>
 
+                    <NavBar logout={logout}/>
                     <Routes
                         login={login}
                         signup={signup}
