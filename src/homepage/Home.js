@@ -4,9 +4,17 @@ import { Link } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 
 
+/**
+ * Route: /
+ *
+ * Homepage of Jobly site.
+ *  - When user is logged in: displays a welcome message.
+ *  - When user is logged out: displays links to login and signup forms.
+ */
 function Home() {
     const {currentUser} = useContext(UserContext);
 
+    /** Logged-out appearance for homepage. */
     function loggedOutHome() {
         return (
             <>
@@ -20,6 +28,7 @@ function Home() {
         )
     }
 
+    /** Logged-in appearance for homepage. */
     function loggedInHome() {
         return (
             <>
@@ -33,12 +42,7 @@ function Home() {
             <h1>Jobly</h1>
             <h3>Apply for jobs from one spot, for free</h3>
 
-            {
-                currentUser ?
-                    loggedInHome()
-                :
-                    loggedOutHome()
-            }
+            {currentUser ? loggedInHome() : loggedOutHome()}
 
         </div>
     )
