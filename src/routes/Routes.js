@@ -15,8 +15,19 @@ import ProtectedRoute from "./ProtectedRoute";
  * All routes for Jobly website.
  *
  * Props:
- *  - login(): log in an existing user
- *  - signup(): register a new user
+ *  - login(): log in an existing user; passed by parent
+ *  - signup(): register a new user; passed by parent
+ *
+ * Route list:
+ *  - /companies/:handle
+ *  - /companies
+ *  - /jobs
+ *  - /login
+ *  - /signup
+ *  - /profile
+ *  - /
+ *
+ * Non-matching URLs will redirect to / (home).
  **/
 function Routes({login, signup}) {
 
