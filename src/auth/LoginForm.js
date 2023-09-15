@@ -3,7 +3,9 @@ import { useHistory } from "react-router-dom";
 
 
 /**
- * /login - Form used to log in to Jobly website.
+ * Route: /login
+ *
+ * Form used to log in to Jobly website.
  *
  * Manages state updates on changes to the form inputs.
  *

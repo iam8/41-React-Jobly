@@ -3,7 +3,9 @@ import { useHistory } from "react-router-dom";
 
 
 /**
- * /signup - Form used to register a new user on the Jobly website.
+ * Route: /signup
+ *
+ * Form used to register a new user on the Jobly website.
  *
  * Manages state updates on changes to the form inputs.
  *
