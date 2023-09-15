@@ -7,14 +7,17 @@ import "./NavBar.css";
 
 
 /**
- * Render a navigation bar for the site.
+ * Render a navigation bar for the site. Appears at the top of every page.
+ *  - When user is logged in: displays links to main pages of the site.
+ *  - When user is logged out: displays links only to login and signup forms.
  *
  * Props:
- *  - logout(): log out the current user
+ *  - logout(): log out the current user; passed by parent
  */
 function NavBar({logout}) {
     const {currentUser} = useContext(UserContext);
 
+    /** Logged-out appearance for navbar. */
     function loggedOutNavbar() {
         return (
             <>
@@ -33,6 +36,7 @@ function NavBar({logout}) {
         );
     }
 
+    /** Logged-in appearance for navbar. */
     function loggedInNavbar() {
         return (
             <>
@@ -71,12 +75,7 @@ function NavBar({logout}) {
                     Jobly
                 </NavLink>
 
-                {
-                    currentUser ?
-                        loggedInNavbar()
-                    :
-                        loggedOutNavbar()
-                }
+                {currentUser ? loggedInNavbar() : loggedOutNavbar()}
 
             </Navbar>
         </div>
