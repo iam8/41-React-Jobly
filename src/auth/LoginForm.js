@@ -2,6 +2,13 @@ import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 
 
+/**
+ * /login - Form used to log in to Jobly website.
+ *
+ * Manages state updates on changes to the form inputs.
+ *
+ * On successful login, calls login (function prop) and redirects to / (home).
+ */
 function LoginForm({login}) {
     const INIT_FORM = {
         username: "",
@@ -11,6 +18,7 @@ function LoginForm({login}) {
     const [formData, setFormData] = useState(INIT_FORM);
     const history = useHistory();
 
+    /** Handle changes to inputs. */
     const handleChange = (evt) => {
         const {name, value} = evt.target;
         setFormData((formData) => ({
@@ -19,10 +27,14 @@ function LoginForm({login}) {
         }));
     }
 
+    /** Form submission - log in user and redirect to home on success. */
     const handleSubmit = async (evt) => {
         evt.preventDefault();
-        await login(formData);
-        history.push("/"); // Redirect to homepage
+        const result = await login(formData);
+
+        if (result.success) {
+            history.push("/"); // Redirect to homepage
+        }
     }
 
     return (
