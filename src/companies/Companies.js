@@ -5,10 +5,19 @@ import SearchBar from "../shared/SearchBar";
 import CompanyCard from "./CompanyCard";
 
 
+/**
+ * Route: /companies
+ *
+ * Display page with list of companies, filtered by company name entered in search bar.
+ *
+ * Displays all companies if nothing is entered in search bar.
+ */
 function Companies() {
     const [companyList, setCompanyList] = useState(null);
 
     useEffect(() => {
+
+        /** Fetch companies, filtered by company name entered in search bar. */
         const fetchCompaniesOnMount = async () => {
             await searchFor();
         };
@@ -16,6 +25,7 @@ function Companies() {
         fetchCompaniesOnMount();
     }, []);
 
+    /** Filter companies by name entered in search bar and reload page. */
     const searchFor = async (name) => {
         try {
             const results = await JoblyApi.getCompanies(name);
