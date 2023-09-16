@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
+import { Alert } from "reactstrap";
 
 
 /**
@@ -29,6 +30,7 @@ function SignupForm({signup}) {
     /** Handle changes to inputs. */
     const handleChange = (evt) => {
         const {name, value} = evt.target;
+        setFormErrors([]);
         setFormData((formData) => ({
             ...formData,
             [name]: value
@@ -49,7 +51,13 @@ function SignupForm({signup}) {
 
     /** Show an alert message on failure to sign up. */
     const renderAlert = () => {
-        return formErrors.length ? <h6>Sign up failed: {formErrors}</h6> : <></>
+        if (formErrors.length) {
+            return (
+                <Alert color="danger">
+                    Sign up failed - {formErrors}
+                </Alert>
+            );
+        }
     }
 
     return (

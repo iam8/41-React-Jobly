@@ -1,4 +1,5 @@
 import React, {useState, useContext} from "react";
+import { Alert } from "reactstrap";
 
 import JoblyApi from "../api";
 import UserContext from "../auth/UserContext";
@@ -74,8 +75,21 @@ function EditProfileForm() {
 
     /** Show an alert message on success or failure to update profile. */
     const renderAlert = () => {
-        if (saveSuccess) return <h6>Save successful!</h6>
-        if (formErrors.length) return <h6>Could not update profile: {formErrors}</h6>
+        if (saveSuccess) {
+            return (
+                <Alert color="success">
+                    Save successful!
+                </Alert>
+            )
+        }
+
+        if (formErrors.length) {
+            return (
+                <Alert color="danger">
+                    Could not update profile - {formErrors}
+                </Alert>
+            );
+        }
     }
 
     return (
