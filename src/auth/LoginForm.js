@@ -18,6 +18,7 @@ function LoginForm({login}) {
     };
 
     const [formData, setFormData] = useState(INIT_FORM);
+    const [formErrors, setFormErrors] = useState([]);
     const history = useHistory();
 
     /** Handle changes to inputs. */
@@ -36,11 +37,20 @@ function LoginForm({login}) {
 
         if (result.success) {
             history.push("/"); // Redirect to homepage
+        } else {
+            setFormErrors(result.err);
         }
+    }
+
+    /** Show an alert message on failure to log in. */
+    const renderAlert = () => {
+        return formErrors.length ? <h6>Login failed: {formErrors}</h6> : <></>
     }
 
     return (
         <div>
+            {renderAlert()}
+
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="username">Username:</label>
