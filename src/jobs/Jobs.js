@@ -5,10 +5,19 @@ import SearchBar from "../shared/SearchBar";
 import JobCardList from "./JobCardList";
 
 
+/**
+ * Route: /jobs
+ *
+ * Display page with list of jobs, filtered by job title entered in search bar.
+ *
+ * Displays all jobs if nothing is entered in search bar.
+ */
 function Jobs() {
     const [jobList, setJobList] = useState(null);
 
     useEffect(() => {
+
+        /** Fetch jobs, filtered by job title entered in search bar. */
         const fetchJobsOnMount = async () => {
             await searchFor();
         }
@@ -16,6 +25,7 @@ function Jobs() {
         fetchJobsOnMount();
     }, []);
 
+    /** Filter jobs by title entered in search bar and reload page. */
     const searchFor = async (title) => {
         try {
             const results = await JoblyApi.getJobs(title);

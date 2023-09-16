@@ -3,7 +3,7 @@ import React from "react";
 import JobCard from "./JobCard";
 
 
-/** Render a list of JobCard components. */
+/** Render a list of JobCard components. Each JobCard displays basic info about a job. */
 function JobCardList({jobList}) {
 
     return (
