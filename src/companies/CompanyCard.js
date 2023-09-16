@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 
-/** Display basic information about a company in a 'card' format. */
+/** Display basic information about a company. */
 function CompanyCard({name, desc, logoUrl, handle}) {
 
     return (
