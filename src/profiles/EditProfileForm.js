@@ -16,7 +16,8 @@ import UserContext from "../auth/UserContext";
  */
 function EditProfileForm() {
     const {currentUser, setCurrentUser} = useContext(UserContext);
-    const [saveSuccess, setSaveSuccess] = useState(null);
+    const [saveSuccess, setSaveSuccess] = useState(false);
+    const [formErrors, setFormErrors] = useState([]);
 
     const INIT_FORM = {
         firstName: currentUser.firstName,
@@ -29,11 +30,12 @@ function EditProfileForm() {
     /** Handle changes to inputs. */
     const handleChange = (evt) => {
         const {name, value} = evt.target;
+        setSaveSuccess(false);
+        setFormErrors([]);
         setFormData((formData) => ({
             ...formData,
             [name]: value
         }));
-
     }
 
     /**
@@ -45,6 +47,8 @@ function EditProfileForm() {
             const savedData = await JoblyApi.saveUserProfile({username, ...formData});
             return savedData;
         } catch(err) {
+            setSaveSuccess(false);
+            setFormErrors(err);
             console.log("ERROR SAVING PROFILE:", err);
             return;
         }
@@ -55,12 +59,13 @@ function EditProfileForm() {
         evt.preventDefault();
         const savedUserData = await saveUserProfile(currentUser.username, formData);
         if (!savedUserData) {
-            setSaveSuccess(false);
             return;
         }
 
-        setSaveSuccess(true);
         setCurrentUser(savedUserData);
+        setSaveSuccess(true);
+        setFormErrors([]);
+
         setFormData(data => ({
             ...data,
             password: ""
@@ -69,11 +74,8 @@ function EditProfileForm() {
 
     /** Show an alert message on success or failure to update profile. */
     const renderAlert = () => {
-        if (saveSuccess) {
-            return <h6>Save successful!</h6>
-        } else if (saveSuccess === false) {
-            return <h6>ERROR: could not save!</h6>
-        }
+        if (saveSuccess) return <h6>Save successful!</h6>
+        if (formErrors.length) return <h6>Could not update profile: {formErrors}</h6>
     }
 
     return (
