@@ -10,6 +10,8 @@ import { useHistory } from "react-router-dom";
  * Manages state updates on changes to the form inputs.
  *
  * On successful login, calls login (function prop) and redirects to / (home).
+ *
+ * On login failure, displays alert and error message.
  */
 function LoginForm({login}) {
     const INIT_FORM = {
