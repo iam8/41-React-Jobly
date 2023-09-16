@@ -10,6 +10,8 @@ import { useHistory } from "react-router-dom";
  * Manages state updates on changes to the form inputs.
  *
  * On successful sign up, calls signup (function prop) and redirects to / (home).
+ *
+ * On signup failure, displays alert and error message.
  */
 function SignupForm({signup}) {
     const INIT_FORM = {
@@ -21,6 +23,7 @@ function SignupForm({signup}) {
     };
 
     const [formData, setFormData] = useState(INIT_FORM);
+    const [formErrors, setFormErrors] = useState([]);
     const history = useHistory();
 
     /** Handle changes to inputs. */
@@ -39,11 +42,20 @@ function SignupForm({signup}) {
 
         if (result.success) {
             history.push("/"); // Redirect to homepage
+        } else {
+            setFormErrors(result.err);
         }
+    }
+
+    /** Show an alert message on failure to sign up. */
+    const renderAlert = () => {
+        return formErrors.length ? <h6>Sign up failed: {formErrors}</h6> : <></>
     }
 
     return (
         <div>
+            {renderAlert()}
+
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="username">Username:</label>
