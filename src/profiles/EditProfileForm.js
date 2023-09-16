@@ -4,6 +4,16 @@ import JoblyApi from "../api";
 import UserContext from "../auth/UserContext";
 
 
+/**
+ * Route: /profile
+ *
+ * Form used to edit user profile. Initially fills form inputs with the current user profile data.
+ *
+ * Manages state updates on changes to the form inputs.
+ *
+ * On form submission, attempts to update user profile with new data and displays a success or
+ * failure notification.
+ */
 function EditProfileForm() {
     const {currentUser, setCurrentUser} = useContext(UserContext);
     const [saveSuccess, setSaveSuccess] = useState(null);
@@ -16,6 +26,7 @@ function EditProfileForm() {
 
     const [formData, setFormData] = useState(INIT_FORM);
 
+    /** Handle changes to inputs. */
     const handleChange = (evt) => {
         const {name, value} = evt.target;
         setFormData((formData) => ({
@@ -25,6 +36,10 @@ function EditProfileForm() {
 
     }
 
+    /**
+     * Call API to save new user profile data. Return saved data if successful or undefined if
+     * unsuccessful.
+     */
     async function saveUserProfile(username, formData) {
         try {
             const savedData = await JoblyApi.saveUserProfile({username, ...formData});
@@ -35,6 +50,7 @@ function EditProfileForm() {
         }
     }
 
+    /** Form submission - attempt to update user profile data and reset form inputs. */
     const handleSubmit = async (evt) => {
         evt.preventDefault();
         const savedUserData = await saveUserProfile(currentUser.username, formData);
@@ -51,6 +67,7 @@ function EditProfileForm() {
         }));
     }
 
+    /** Show an alert message on success or failure to update profile. */
     const renderAlert = () => {
         if (saveSuccess) {
             return <h6>Save successful!</h6>
