@@ -21,17 +21,13 @@ function NavBar({logout}) {
     function loggedOutNavbar() {
         return (
             <>
-                <Nav className="ml-auto" navbar>
-                    <NavItem>
-                        <NavLink to="/signup">Sign up</NavLink>
-                    </NavItem>
-                </Nav>
+                <NavItem>
+                    <NavLink to="/signup">Sign up</NavLink>
+                </NavItem>
 
-                <Nav className="ml-auto" navbar>
-                    <NavItem>
-                        <NavLink to="/login">Log in</NavLink>
-                    </NavItem>
-                </Nav>
+                <NavItem>
+                    <NavLink to="/login">Log in</NavLink>
+                </NavItem>
             </>
         );
     }
@@ -40,29 +36,21 @@ function NavBar({logout}) {
     function loggedInNavbar() {
         return (
             <>
-                <Nav className="ml-auto" navbar>
-                    <NavItem>
-                        <NavLink to="/companies">Companies</NavLink>
-                    </NavItem>
-                </Nav>
+                <NavItem>
+                    <NavLink to="/companies">Companies</NavLink>
+                </NavItem>
 
-                <Nav className="ml-auto" navbar>
-                    <NavItem>
-                        <NavLink to="/jobs">Jobs</NavLink>
-                    </NavItem>
-                </Nav>
+                <NavItem>
+                    <NavLink to="/jobs">Jobs</NavLink>
+                </NavItem>
 
-                <Nav className="ml-auto" navbar>
-                    <NavItem>
-                        <NavLink to="/profile">Profile ({currentUser.username})</NavLink>
-                    </NavItem>
-                </Nav>
+                <NavItem>
+                    <NavLink to="/profile">Profile ({currentUser.username})</NavLink>
+                </NavItem>
 
-                <Nav className="ml-auto" navbar>
-                    <NavItem>
-                        <Link to="/" onClick={logout}>Log out</Link>
-                    </NavItem>
-                </Nav>
+                <NavItem>
+                    <Link to="/" onClick={logout}>Log out</Link>
+                </NavItem>
             </>
         );
     }
@@ -70,13 +58,13 @@ function NavBar({logout}) {
     return (
         <div className="NavBar">
             <Navbar expand="md">
-
                 <NavLink exact to="/" className="navbar-brand">
                     Jobly
                 </NavLink>
 
-                {currentUser ? loggedInNavbar() : loggedOutNavbar()}
-
+                <Nav className="ml-auto">
+                    {currentUser ? loggedInNavbar() : loggedOutNavbar()}
+                </Nav>
             </Navbar>
         </div>
     )
