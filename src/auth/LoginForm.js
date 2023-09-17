@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
-import { Alert } from "reactstrap";
+import { Alert, Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 
 /**
@@ -58,36 +58,38 @@ function LoginForm({login}) {
     }
 
     return (
-        <div>
+        <div className="LoginForm">
             {renderAlert()}
 
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="username">Username:</label>
-                    <input
+            <Form onSubmit={handleSubmit}>
+                <FormGroup>
+                    <Label htmlFor="username">Username:</Label>
+                    <Input
                         id="username"
                         name="username"
                         type="text"
+                        placeholder="Enter a username"
                         value={formData.username}
                         onChange={handleChange}
                     />
-                </div>
+                </FormGroup>
 
-                <div>
-                    <label htmlFor="password">Password:</label>
-                    <input
+                <FormGroup>
+                    <Label htmlFor="password">Password:</Label>
+                    <Input
                         id="password"
                         name="password"
                         type="password"
+                        placeholder="At least 6 characters long"
                         value={formData.password}
                         onChange={handleChange}
                     />
-                </div>
+                </FormGroup>
 
-                <button>Submit</button>
-            </form>
+                <Button color="primary">Submit</Button>
+            </Form>
         </div>
-    )
+    );
 }
 
 
