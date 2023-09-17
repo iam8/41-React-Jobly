@@ -1,22 +1,38 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {Card, CardTitle, CardBody, CardText, CardImg, Row, Col} from "reactstrap";
+
+import "./CompanyCard.css";
 
 
 /** Display basic information about a company. */
 function CompanyCard({name, desc, logoUrl, handle}) {
 
     return (
-        <Link to={`/companies/${handle}`}>
-            <h3>{name}</h3>
-            {logoUrl &&
-                <img
-                    src={logoUrl}
-                    alt={name}
-                />
-            }
+        <div className="CompanyCard">
+            <Card>
+                <CardBody>
+                    <Link to={`/companies/${handle}`}>
+                        <Row>
+                            <Col>
+                                <CardTitle tag="h5">{name}</CardTitle>
+                                <CardText>{desc}</CardText>
+                            </Col>
 
-            <div>{desc}</div>
-        </Link>
+                            <Col id="CompanyCard-img" className="col-1">
+                                {logoUrl &&
+                                    <CardImg
+                                        tag="img"
+                                        src={logoUrl}
+                                        alt={name}
+                                    />
+                                }
+                            </Col>
+                        </Row>
+                    </Link>
+                </CardBody>
+            </Card>
+        </div>
     )
 }
 
