@@ -35,7 +35,7 @@ function Home() {
     function loggedInHome() {
         return (
             <>
-                <h2>Welcome, {currentUser.firstName}</h2>
+                <h2 className="Home-welcome">Welcome, {currentUser.firstName}!</h2>
             </>
         )
     }
