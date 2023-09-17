@@ -1,7 +1,9 @@
 import React, {useContext} from "react";
 import { Link } from "react-router-dom";
+import { Button } from "reactstrap";
 
 import UserContext from "../auth/UserContext";
+import "./Home.css";
 
 
 /**
@@ -17,14 +19,15 @@ function Home() {
     /** Logged-out appearance for homepage. */
     function loggedOutHome() {
         return (
-            <>
-                <div>
+            <div className="Home-buttons">
+                <Button color="primary" size="lg">
                     <Link to="/signup">Sign up</Link>
-                </div>
-                <div>
+                </Button>
+
+                <Button color="primary" size="lg">
                     <Link to="/login">Log in</Link>
-                </div>
-            </>
+                </Button>
+            </div>
         )
     }
 
