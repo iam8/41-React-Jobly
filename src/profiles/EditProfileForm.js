@@ -1,8 +1,10 @@
 import React, {useState, useContext} from "react";
-import { Alert } from "reactstrap";
+import { Alert, Button, Card, CardBody, Form, FormGroup, Label, Input } from "reactstrap";
 
 import JoblyApi from "../api";
 import UserContext from "../auth/UserContext";
+
+import "./EditProfileForm.css";
 
 
 /**
@@ -93,57 +95,62 @@ function EditProfileForm() {
     }
 
     return (
-        <div>
+        <div className="EditProfileForm">
             {renderAlert()}
 
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="username">Username:</label>
-                    <input
-                        id="username"
-                        name="username"
-                        type="text"
-                        value={currentUser.username}
-                        disabled
-                    />
-                </div>
+            <h2 className="EditProfileForm-heading">Edit Profile</h2>
 
-                <div>
-                    <label htmlFor="first-name">First name:</label>
-                    <input
-                        id="first-name"
-                        name="firstName"
-                        type="text"
-                        value={formData.firstName}
-                        onChange={handleChange}
-                    />
-                </div>
+            <Card className="EditProfileForm-card">
+                <CardBody>
+                    <Form className="EditProfileForm-form" onSubmit={handleSubmit}>
+                        <FormGroup>
+                            <Label htmlFor="username">Username</Label>
+                            <Input
+                                id="username"
+                                name="username"
+                                type="text"
+                                value={currentUser.username}
+                                disabled
+                            />
+                        </FormGroup>
 
-                <div>
-                    <label htmlFor="last-name">Last name:</label>
-                    <input
-                        id="last-name"
-                        name="lastName"
-                        type="text"
-                        value={formData.lastName}
-                        onChange={handleChange}
-                    />
-                </div>
+                        <FormGroup>
+                            <Label htmlFor="first-name">First name</Label>
+                            <Input
+                                id="first-name"
+                                name="firstName"
+                                type="text"
+                                value={formData.firstName}
+                                onChange={handleChange}
+                            />
+                        </FormGroup>
 
-                <div>
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                    />
-                </div>
+                        <FormGroup>
+                            <Label htmlFor="last-name">Last name</Label>
+                            <Input
+                                id="last-name"
+                                name="lastName"
+                                type="text"
+                                value={formData.lastName}
+                                onChange={handleChange}
+                            />
+                        </FormGroup>
 
-                <button>Save changes</button>
+                        <FormGroup>
+                            <Label htmlFor="email">Email</Label>
+                            <Input
+                                id="email"
+                                name="email"
+                                type="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                            />
+                        </FormGroup>
 
-            </form>
+                        <Button color="primary" block>Save changes</Button>
+                    </Form>
+                </CardBody>
+            </Card>
         </div>
     )
 }
