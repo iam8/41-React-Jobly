@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
-import { Alert, Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Alert, Button, Card, CardBody, Form, FormGroup, Label, Input } from "reactstrap";
+
+import "./LoginForm.css";
 
 
 /**
@@ -61,33 +63,37 @@ function LoginForm({login}) {
         <div className="LoginForm">
             {renderAlert()}
 
-            <Form onSubmit={handleSubmit}>
-                <FormGroup>
-                    <Label htmlFor="username">Username:</Label>
-                    <Input
-                        id="username"
-                        name="username"
-                        type="text"
-                        placeholder="Enter a username"
-                        value={formData.username}
-                        onChange={handleChange}
-                    />
-                </FormGroup>
+            <h2 className="LoginForm-heading">Log In</h2>
 
-                <FormGroup>
-                    <Label htmlFor="password">Password:</Label>
-                    <Input
-                        id="password"
-                        name="password"
-                        type="password"
-                        placeholder="At least 6 characters long"
-                        value={formData.password}
-                        onChange={handleChange}
-                    />
-                </FormGroup>
+            <Card className="LoginForm-card">
+                <CardBody>
+                    <Form className="LoginForm-form" onSubmit={handleSubmit}>
+                        <FormGroup>
+                            <Label className="LoginForm-label" htmlFor="username">Username</Label>
+                            <Input
+                                id="username"
+                                name="username"
+                                type="text"
+                                value={formData.username}
+                                onChange={handleChange}
+                            />
+                        </FormGroup>
 
-                <Button color="primary">Submit</Button>
-            </Form>
+                        <FormGroup>
+                            <Label className="LoginForm-label" htmlFor="password">Password</Label>
+                            <Input
+                                id="password"
+                                name="password"
+                                type="password"
+                                value={formData.password}
+                                onChange={handleChange}
+                            />
+                        </FormGroup>
+
+                        <Button color="primary" block>Submit</Button>
+                    </Form>
+                </CardBody>
+            </Card>
         </div>
     );
 }
