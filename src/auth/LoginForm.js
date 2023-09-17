@@ -69,7 +69,7 @@ function LoginForm({login}) {
                 <CardBody>
                     <Form className="LoginForm-form" onSubmit={handleSubmit}>
                         <FormGroup>
-                            <Label className="LoginForm-label" htmlFor="username">Username</Label>
+                            <Label htmlFor="username">Username</Label>
                             <Input
                                 id="username"
                                 name="username"
@@ -80,7 +80,7 @@ function LoginForm({login}) {
                         </FormGroup>
 
                         <FormGroup>
-                            <Label className="LoginForm-label" htmlFor="password">Password</Label>
+                            <Label htmlFor="password">Password</Label>
                             <Input
                                 id="password"
                                 name="password"
