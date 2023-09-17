@@ -1,0 +1,8 @@
+.SearchBar {
+    margin: 30px;
+}
+
+.SearchBar .col {
+    padding-left: 0px;
+    padding-right: 10px;
+}
