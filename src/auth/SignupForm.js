@@ -64,8 +64,6 @@ function SignupForm({signup}) {
 
     return (
         <div className="SignupForm">
-            {renderAlert()}
-
             <h2 className="SignupForm-heading">Sign Up</h2>
 
             <Card className="SignupForm-card">
@@ -125,6 +123,8 @@ function SignupForm({signup}) {
                                 onChange={handleChange}
                             />
                         </FormGroup>
+
+                        {renderAlert()}
 
                         <Button color="primary" block>Submit</Button>
                     </Form>

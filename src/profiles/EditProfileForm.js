@@ -96,8 +96,6 @@ function EditProfileForm() {
 
     return (
         <div className="EditProfileForm">
-            {renderAlert()}
-
             <h2 className="EditProfileForm-heading">Edit Profile</h2>
 
             <Card className="EditProfileForm-card">
@@ -146,6 +144,8 @@ function EditProfileForm() {
                                 onChange={handleChange}
                             />
                         </FormGroup>
+
+                        {renderAlert()}
 
                         <Button color="primary" block>Save changes</Button>
                     </Form>

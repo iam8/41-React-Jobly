@@ -61,8 +61,6 @@ function LoginForm({login}) {
 
     return (
         <div className="LoginForm">
-            {renderAlert()}
-
             <h2 className="LoginForm-heading">Log In</h2>
 
             <Card className="LoginForm-card">
@@ -89,6 +87,8 @@ function LoginForm({login}) {
                                 onChange={handleChange}
                             />
                         </FormGroup>
+
+                        {renderAlert()}
 
                         <Button color="primary" block>Submit</Button>
                     </Form>
