@@ -38,19 +38,20 @@ function Companies() {
     if (!companyList) return <div>LOADING...</div>
 
     return (
-        <div>
+        <div className="Companies col-8 offset-2">
             <SearchBar searchFor={searchFor} />
 
             {companyList.length ? (
                 <div>
                     {companyList.map((company) => {
-                        return <CompanyCard
-                            key={company.handle}
-                            name={company.name}
-                            desc={company.description}
-                            logoUrl={company.logoUrl}
-                            handle={company.handle}
-                        />
+                        return <div className="mb-3" key={company.handle}>
+                            <CompanyCard
+                                name={company.name}
+                                desc={company.description}
+                                logoUrl={company.logoUrl}
+                                handle={company.handle}
+                            />
+                        </div>
                     })}
                 </div>
             ) : (
