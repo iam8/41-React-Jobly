@@ -7,16 +7,17 @@ import JobCard from "./JobCard";
 function JobCardList({jobList}) {
 
     return (
-        <div>
+        <div className="JobCardList">
             {jobList.map((job) => {
-                return <JobCard
-                    key={job.id}
-                    id={job.id}
-                    title={job.title}
-                    salary={job.salary}
-                    equity={job.equity}
-                    companyName={job.companyName}
-                />
+                return <div className="mb-3" key={job.id}>
+                    <JobCard
+                        id={job.id}
+                        title={job.title}
+                        salary={job.salary}
+                        equity={job.equity}
+                        companyName={job.companyName}
+                    />
+                </div>
             })}
         </div>
     )
