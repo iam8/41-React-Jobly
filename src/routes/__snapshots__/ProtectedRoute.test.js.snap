@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Matches snapshot when logged in 1`] = `<DocumentFragment />`;
+
+exports[`Matches snapshot when logged out 1`] = `<DocumentFragment />`;
