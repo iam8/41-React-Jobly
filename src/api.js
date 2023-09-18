@@ -12,7 +12,6 @@ class JoblyApi {
 
     /** Send request to endpoint via Axios with (optional) data and method. */
     static async request(endpoint, data = {}, method = "get") {
-        console.debug("API Call:", endpoint, data, method);
 
         // Pass authorization token via request header.
         const url = `${BASE_URL}/${endpoint}`;
