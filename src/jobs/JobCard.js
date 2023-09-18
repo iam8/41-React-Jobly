@@ -2,7 +2,6 @@ import React, {useContext, useState, useEffect} from "react";
 import {Button, Card, CardTitle, CardBody} from "reactstrap";
 
 import UserContext from "../auth/UserContext";
-import "./JobCard.css";
 
 
 /** Show basic information about a job. */

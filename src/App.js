@@ -7,7 +7,6 @@ import NavBar from './navbar/NavBar';
 import Routes from './routes/Routes';
 import UserContext from './auth/UserContext';
 import useLocalStorage from './hooks/useLocalStorage';
-import './App.css';
 
 // Key name for storing token in localStorage
 export const TOKEN_STORAGE_KEY = "jobly-token";
