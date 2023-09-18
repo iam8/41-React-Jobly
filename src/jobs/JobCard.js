@@ -1,5 +1,8 @@
 import React, {useContext, useState, useEffect} from "react";
+import {Button, Card, CardTitle, CardBody, CardText} from "reactstrap";
+
 import UserContext from "../auth/UserContext";
+import "./JobCard.css";
 
 
 /** Show basic information about a job. */
@@ -22,29 +25,38 @@ function JobCard({id, title, salary, equity, companyName}) {
     }
 
     return (
-        <div>
-            <h5>{title}</h5>
+        <div className="JobCard">
 
-            {companyName !== undefined &&
-                <div>Company: {companyName}</div>
-            }
+            <Card>
+                <CardBody>
+                    <CardTitle tag="h5">{title}</CardTitle>
 
-            {salary &&
-                <div>Salary: {salary}</div>
-            }
+                    {companyName !== undefined &&
+                        <p className="text-muted">
+                            {companyName}
+                        </p>
+                    }
 
-            {equity !== null &&
-                <div>
-                    Equity: {equity}
-                </div>
-            }
+                    <CardText>
+                        {salary &&
+                                <div><small>Salary: {salary}</small></div>
+                        }
 
-            <button
-                onClick={handleApply}
-                disabled={hasApplied}
-            >
-                    {hasApplied ? <span>Applied</span> : <span>Apply</span>}
-            </button>
+                        {equity !== null &&
+                                <small>Equity: {equity}</small>
+                        }
+                    </CardText>
+
+                    <Button
+                        className="float-end"
+                        color="danger"
+                        onClick={handleApply}
+                        disabled={hasApplied}
+                    >
+                        {hasApplied ? <span>Applied</span> : <span>Apply</span>}
+                    </Button>
+                </CardBody>
+            </Card>
         </div>
     )
 }
