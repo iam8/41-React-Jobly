@@ -1,5 +1,5 @@
 import React, {useContext, useState, useEffect} from "react";
-import {Button, Card, CardTitle, CardBody, CardText} from "reactstrap";
+import {Button, Card, CardTitle, CardBody} from "reactstrap";
 
 import UserContext from "../auth/UserContext";
 import "./JobCard.css";
@@ -37,15 +37,13 @@ function JobCard({id, title, salary, equity, companyName}) {
                         </p>
                     }
 
-                    <CardText>
-                        {salary &&
-                                <div><small>Salary: {salary}</small></div>
-                        }
+                    {salary &&
+                            <div><small>Salary: {salary}</small></div>
+                    }
 
-                        {equity !== null &&
-                                <div><small>Equity: {equity}</small></div>
-                        }
-                    </CardText>
+                    {equity !== null &&
+                            <div><small>Equity: {equity}</small></div>
+                    }
 
                     <Button
                         className="float-end"
