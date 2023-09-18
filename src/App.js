@@ -120,13 +120,10 @@ function App() {
                     value={{currentUser, setCurrentUser, hasAppliedToJob, applyToJob}}>
 
                     <NavBar logout={logout}/>
-                    <div className='pt-5'>
-                        <Routes
-                            login={login}
-                            signup={signup}
-                        />
-                    </div>
-
+                    <Routes
+                        login={login}
+                        signup={signup}
+                    />
                 </UserContext.Provider>
             </BrowserRouter>
         </div>
