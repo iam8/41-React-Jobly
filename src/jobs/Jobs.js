@@ -38,7 +38,7 @@ function Jobs() {
     if (!jobList) return <div>LOADING...</div>
 
     return (
-        <div>
+        <div className="Jobs col-8 offset-2">
             <SearchBar searchFor={searchFor}/>
 
             {jobList.length ? (
