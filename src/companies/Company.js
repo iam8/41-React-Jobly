@@ -3,6 +3,7 @@ import { useParams, Redirect } from "react-router-dom";
 
 import JoblyApi from "../api";
 import JobCardList from "../jobs/JobCardList";
+import "./Company.css";
 
 
 /**
@@ -34,9 +35,12 @@ function Company() {
     if (!Object.keys(companyData).length) return <Redirect to="/" />
 
     return (
-        <div>
-            <h2>{companyData.name}</h2>
-            <div>{companyData.description}</div>
+        <div className="Company col-8 offset-2">
+            <div className="Company-info">
+                <h2>{companyData.name}</h2>
+                <p>{companyData.description}</p>
+            </div>
+
             <JobCardList jobList={companyData.jobs}/>
         </div>
     )
