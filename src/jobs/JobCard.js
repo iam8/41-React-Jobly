@@ -26,7 +26,6 @@ function JobCard({id, title, salary, equity, companyName}) {
 
     return (
         <div className="JobCard">
-
             <Card>
                 <CardBody>
                     <CardTitle tag="h5">{title}</CardTitle>
