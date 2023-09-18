@@ -38,7 +38,7 @@ function Companies() {
     if (!companyList) return <div>LOADING...</div>
 
     return (
-        <div className="Companies col-8 offset-2">
+        <div className="Companies pt-5 col-8 offset-2">
             <SearchBar searchFor={searchFor} />
 
             {companyList.length ? (

@@ -35,7 +35,7 @@ function Company() {
     if (!Object.keys(companyData).length) return <Redirect to="/" />
 
     return (
-        <div className="Company col-8 offset-2">
+        <div className="Company pt-5 col-8 offset-2">
             <div className="Company-info">
                 <h2>{companyData.name}</h2>
                 <p>{companyData.description}</p>
