@@ -43,7 +43,7 @@ function JobCard({id, title, salary, equity, companyName}) {
                         }
 
                         {equity !== null &&
-                                <small>Equity: {equity}</small>
+                                <div><small>Equity: {equity}</small></div>
                         }
                     </CardText>
 
