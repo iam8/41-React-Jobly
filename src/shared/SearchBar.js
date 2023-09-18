@@ -25,7 +25,7 @@ function SearchBar({searchFor}) {
     }
 
     return (
-        <div className="SearchBar">
+        <div className="SearchBar mb-4">
             <Form onSubmit={handleSubmit}>
                 <Row>
                     <Col>
