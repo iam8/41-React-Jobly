@@ -19,7 +19,7 @@ function CompanyCard({name, desc, logoUrl, handle}) {
                                 <CardText>{desc}</CardText>
                             </Col>
 
-                            <Col id="CompanyCard-img" className="col-1">
+                            <Col id="CompanyCard-img" className="col-2">
                                 {logoUrl &&
                                     <CardImg
                                         tag="img"
