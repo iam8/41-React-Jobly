@@ -14,7 +14,7 @@ exports[`Matches snapshot when logged in 1`] = `
     <h2
       class="Home-welcome"
     >
-      Welcome, !
+      Welcome, testfirst!
     </h2>
   </div>
 </DocumentFragment>
