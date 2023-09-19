@@ -26,7 +26,7 @@ test("Matches snapshot with image", () => {
                 handle="test-0"
                 name="Test Company"
                 description="Desc 0"
-                logo_url="dummyUrl.jpg"
+                logoUrl="dummyUrl.jpg"
             />
         </MemoryRouter>,
     );
