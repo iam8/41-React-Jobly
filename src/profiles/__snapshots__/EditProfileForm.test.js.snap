@@ -51,7 +51,7 @@ exports[`Matches snapshot 1`] = `
               id="first-name"
               name="firstName"
               type="text"
-              value=""
+              value="testfirst"
             />
           </div>
           <div
@@ -68,7 +68,7 @@ exports[`Matches snapshot 1`] = `
               id="last-name"
               name="lastName"
               type="text"
-              value=""
+              value="testlast"
             />
           </div>
           <div
