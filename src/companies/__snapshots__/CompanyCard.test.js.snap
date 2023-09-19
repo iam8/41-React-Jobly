@@ -32,7 +32,13 @@ exports[`Matches snapshot with image 1`] = `
             <div
               class="col-2 col"
               id="CompanyCard-img"
-            />
+            >
+              <img
+                alt="Test Company"
+                class="card-img"
+                src="dummyUrl.jpg"
+              />
+            </div>
           </div>
         </a>
       </div>
